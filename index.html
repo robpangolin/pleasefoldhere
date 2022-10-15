@@ -3,21 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>Daily vid: best seats in the jedi temple</h2>
-      <h5>The seats are comfy but how comfy?? Oct 14, 2022</h5>
-      <div class="fakeimg" style="height:200px;"><iframe src="https://www.youtube.com/embed/j0YhniBcUL0" frameborder="0" allowfullscreen></iframe></div>
-      <p>ESSENTIAL VIEWING ->>>>> <a href="https://youtu.be/j0YhniBcUL0"> check it out!</a></p>
-    </div>
-
-    <div class="card">
-      <h2>Daily vid: ww2 army boot deconstruction</h2>
-      <h5> breaking down why these boots were so good, Oct 13, 2022</h5>
-      <div class="fakeimg" style="height:200px;"><iframe src="https://www.youtube.com/embed/mZu4RSwgho4" frameborder="0" allowfullscreen></iframe></div>
-      <p>Rose anvil does these amazing deep dives into boots and shoes which really shows off the build quality of some of these old boot designs. Love how valuable this particular brand became in the army just for being durable and well built. <a href="https://youtu.be/mZu4RSwgho4">https://youtu.be/mZu4RSwgho4 </a> </p>
-    </div>
-
+  <div class="leftcolumn" id="leftcolumn">
   </div>
 
   <div class="rightcolumn">
@@ -27,20 +13,20 @@
       <p>This is intended as a place to talk about the things that interest me at any given moment. It will be a random assortment of blog posts, videos, and general thoughts. There will be two types of post here. The daily vids, uploaded daily (obviously) with one video from the day that I found particularly interesting. And the weekly update, posted on a Sunday, discussing what's been happening in my head over the last week or so, ranging from ethics, politics, working life etc.</p>
     </div>
     <div class="card">
-      <h3>Popular Post</h3>
+      <h3>Popular Posts</h3>
       <div class="fakeimg">Image</div><br>
       <div class="fakeimg">Image</div><br>
       <div class="fakeimg">Image</div>
     </div>
     <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
+      <h3>Don't follow Me</h3>
+      <p>seriously, don't.</p>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>You reached the end. Please fold here.</h2>
 </div>
 
 
@@ -114,3 +100,63 @@ body {
   }
 }
 </style>
+<script>
+  const dvids = [
+    {
+  "title": "Daily vid: Impossible wind car",
+              "subtitle":"Veritasium trying to outrun the wind using nothing but the wind",
+              "vidlink":"https://www.youtube.com/embed/jyQwgBAaBag&list=PLdPzNW_qeGqZCfv7IcDeDMG2oHghouCH3&index=11",
+              "text": "Seems impossible, may well be. Either way I think it's worth an experiment."
+    },
+              {
+              "title": "Daily vid: best seats in the jedi temple, Oct 14th 2022",
+              "subtitle":"The seats are comfy but how comfy??",
+              "vidlink":"https://www.youtube.com/embed/j0YhniBcUL0",
+              "text": "ESSENTIAL VIEWING  check it out!"
+          },
+          {
+              "title": "Daily vid: ww2 army boot deconstruction, Oct 13th 2022",
+              "subtitle":"breaking down why these boots were so good",
+              "vidlink":"https://www.youtube.com/embed/mZu4RSwgho4",
+              "text": "Rose anvil does these amazing deep dives into boots and shoes which really shows off the build quality of some of these old boot designs. Love how valuable this particular brand became in the army just for being durable and well built."
+          }
+          
+      ];
+  
+      const app = document.getElementById("leftcolumn");
+      dvids.forEach((obj) => {
+          //creating the page elements for each
+          const node = document.createElement("div"); 
+          const tit = document.createElement("h2");
+          const stit = document.createElement("h5");
+          const texty = document.createElement("p"); 
+          const iframe = document.createElement("iframe");
+         
+          //creating the text elements to fill each page element               
+          const title = document.createTextNode(obj.title);
+          const subtitle = document.createTextNode(obj.subtitle); 
+          const text = document.createTextNode(obj.text);
+          const framelink = document.createTextNode(obj.vidlink);
+          
+          //puting each of the sub-elements into the main div
+          node.appendChild(tit);
+          node.appendChild(stit); 
+          node.appendChild(iframe); 
+          node.appendChild(texty);
+          
+          // Append the text to each sub-element
+          tit.appendChild(title);
+          stit.appendChild(subtitle);
+          texty.appendChild(text);
+
+          //set the link of the iframe
+          iframe.setAttribute("src", obj.vidlink);
+          iframe.setAttribute("allowfullscreen", "True"); 
+
+          //set other attributes to enable easy styling
+          node.setAttribute("class", "card")
+
+          //append all of this to the original div called node
+          app.appendChild(node);                                  
+      });
+  </script>
