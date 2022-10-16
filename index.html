@@ -91,6 +91,10 @@ body {
   background: #ddd;
   margin-top: 20px;
 }
+.portrait {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
@@ -103,30 +107,35 @@ body {
 <script>
   const dvids = [
   {
-  "title": "Sunday update: some thoughts about running, October 16th 2022",
+  "type": "Sunday update",
+    "title": "Sunday update: some thoughts about running, October 16th 2022",
               "subtitle":"A random monologue about something I've recently grown to love.",
-              "vidlink":"",
+              "vidlink":"https://t3.ftcdn.net/jpg/01/96/70/14/360_F_196701461_nCY7Ql5OCXilDuowOlIXkZZ7vbcLAuBo.jpg",
               "text":"Running is a pretty popular pastime. It’s a quick form of exercise. Most able-bodied people can do it, and it’s the primary building block of most major sports. Because anyone can do it, and everyone has some idea of what distances mean, the basic concept is easily communicable and well understood. Someone will know what you mean when you say you’ve run 20 miles – that you’ve recently travelled a distance that no-doubt caused you a lot of pain. Because running, for all its great accessibility is hard. That’s kind of the point. It pushes your body into a state of emergency where its suddenly trying to garner energy much faster than it’s normally used to. Your body releases painkillers just to help you through this turmoil, and injects adrenaline to push you beyond your usual physical comfort zone. All your mind can think about is when you plan to stop, thrusting everything else to one side. As a reward you get a clear mind and a pain relief high for a few hours after. You get a sense of freedom and refreshment. You feel oxygenated and satisfied. But one of the best things about running is how quickly the gains from one run can pass on to the next. When you run you do battle with three bodily systems. One, most obvious, is the muscular system in your legs. This has an inherent resilience which if exceeded will see them start to slow and eventually fail. However, this system seldom fails before your second system, your cardiovascular system. This is the ability you have to keep oxygen flowing to your muscles at a sufficiently high rate. You notice this system failing pretty early if you haven’t run for a while. Your heart beats uncomfortably fast and your breathing rises out of control; at worst you wheeze and hold your knees, or get a bad stitch from all the anaerobic work your muscles are having to do to keep up with the lack of oxygen. But your cardiovascular system is unlikely to be the first system to fail. Far more likely is that your mind, the final system, will let you down first. Training for a long run is as much about building a positive belief in yourself as it is about improving your cardio and strengthening your legs. It’s about gradually persuading yourself that you are able; that “you are worthy” of the task ahead of you. If you’re doing a long run and all your body is telling you is “stop, for god’s sake!” that’s absolutely normal. But if you can hear yourself screaming stop and decide instead to keep going, that’s true strength. And that’s what spills over into normal life when you finish it."
     },
   {
+    "type": "Daily vid",
   "title": "Daily vid: Beating the Betz limit, October 16th 2022",
               "subtitle":"A wind power enthusiast stumbles across a potentially game-breaking discovery",
               "vidlink":"https://www.youtube.com/embed/Q1n_NPbFmpE&list=PLdPzNW_qeGqZCfv7IcDeDMG2oHghouCH3&index=10",
               "text": "It's a really random video but I really love it because its so DIY and low-tech. The Betz limit is the theoretical maximum efficiency of a wind turbine. Byt the calculations of Robert, the guy in the video, it seems his fan system breaks this limit. It's evident he is having a lot of fun making the video: it's a great watch."
     },
     {
+      "type": "Daily vid",
   "title": "Daily vid: Impossible wind car, October 15th 2022",
               "subtitle":"Veritasium trying to outrun the wind using nothing but the wind",
               "vidlink":"https://www.youtube.com/embed/jyQwgBAaBag&list=PLdPzNW_qeGqZCfv7IcDeDMG2oHghouCH3&index=11",
               "text": "Seems impossible, may well be. Either way I think it's worth an experiment."
     },
               {
+                "type": "Daily vid",
               "title": "Daily vid: best seats in the jedi temple, Oct 14th 2022",
               "subtitle":"The seats are comfy but how comfy??",
               "vidlink":"https://www.youtube.com/embed/j0YhniBcUL0",
               "text": "ESSENTIAL VIEWING  check it out!"
           },
           {
+            "type": "Daily vid",
               "title": "Daily vid: ww2 army boot deconstruction, Oct 13th 2022",
               "subtitle":"breaking down why these boots were so good",
               "vidlink":"https://www.youtube.com/embed/mZu4RSwgho4",
@@ -137,6 +146,7 @@ body {
   
       const app = document.getElementById("leftcolumn");
       dvids.forEach((obj) => {
+        if(obj.type = "Daily vid"){
           //creating the page elements for each
           const node = document.createElement("div"); 
           const tit = document.createElement("h2");
@@ -164,11 +174,47 @@ body {
           //set the link of the iframe
           iframe.setAttribute("src", obj.vidlink);
           iframe.setAttribute("allowfullscreen", "True"); 
+          
 
           //set other attributes to enable easy styling
-          node.setAttribute("class", "card")
+          node.setAttribute("class", "card");
 
           //append all of this to the original div called node
-          app.appendChild(node);                                  
+          app.appendChild(node);
+        } else {
+          //creating the page elements for each
+          const node = document.createElement("div"); 
+          const tit = document.createElement("h2");
+          const stit = document.createElement("h5");
+          const texty = document.createElement("p"); 
+          const iframe= document.createElement("iframe");
+         
+          //creating the text elements to fill each page element               
+          const title = document.createTextNode(obj.title);
+          const subtitle = document.createTextNode(obj.subtitle); 
+          const text = document.createTextNode(obj.text);
+          const imgx = document.createTextNode(obj.image);
+          
+          //puting each of the sub-elements into the main div
+          node.appendChild(tit);
+          node.appendChild(stit); 
+          node.appendChild(iframe); 
+          node.appendChild(texty);
+          
+          // Append the text to each sub-element
+          tit.appendChild(title);
+          stit.appendChild(subtitle);
+          texty.appendChild(text);
+
+          //set the link of the image
+          iframe.setAttribute("src", obj.vidlink);
+          iframe.setAttribute("class", "portrait"); 
+
+          //set other attributes to enable easy styling
+          node.setAttribute("class", "card");
+
+          //append all of this to the original div called node
+          app.appendChild(node);
+        }                                 
       });
   </script>
